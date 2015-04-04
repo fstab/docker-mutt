@@ -1,19 +1,19 @@
 docker-mutt
 ===========
 
-Run your favorite mail client [mutt](http://www.mutt.org) in a [Docker](http://docker.io) container without installing [mutt](http://www.mutt.org) on your system.
+Run your favorite mail client [mutt](http://www.mutt.org) in a [Docker](http://docker.io) container without installing [mutt](http://www.mutt.org) on your host system.
 
 Configuration
 -------------
 
-The [Docker](http://docker.io) image contains only the [mutt](http://www.mutt.org) and [msmtp](http://msmtp.sourceforge.net/) applications, but no configuration. The configuration must be created in a directory on the host system and mounted as a volume to `/home/mutt` in the container.
+The [fstab/mutt](https://registry.hub.docker.com/u/fstab/mutt) docker image contains only the [mutt](http://www.mutt.org) and [msmtp](http://msmtp.sourceforge.net/) applications, but no configuration. The configuration must be created in a directory _on the host system_ and mounted as a volume to `/home/mutt` in the container.
 
-On the host system, create a folder `~/.mutt/`. In this folder, create the configuration files as follows.
+*On the host system, create a folder `~/.mutt/`. In this folder, create the configuration files as follows:*
 
 msmtp configuration
 -------------------
 
-[msmtp](http://msmtp.sourceforge.net/) is a sendmail replacement that can be used for sending mail via an SMTP server. It is configured in a file `~/.mutt/.msmtprc` as follows:
+[msmtp](http://msmtp.sourceforge.net/) is a sendmail replacement that can be used for sending mail via an SMTP server. It is configured _on the host system_ in a file `~/.mutt/.msmtprc` as follows:
 
 ```
 defaults
@@ -32,7 +32,7 @@ account default : alice
 mutt configuration
 ------------------
 
-[mutt](http://www.mutt.org) is configured in `~/.mutt/.muttrc`. 
+[mutt](http://www.mutt.org) is configured _on the host system_ in `~/.mutt/.muttrc`. 
 
 ```
 #########################
@@ -64,12 +64,12 @@ set message_cachedir = "/home/mutt/.mutt_cache"
 set editor="vim"
 ```
 
-Create the mutt cache directory in `~/.mutt/.mutt_cache` and change access rights to `700`.
+Create the mutt cache directory `~/.mutt/.mutt_cache/` _on the host system_ and change access rights of `~/.mutt/` to `700`.
 
 Run from Docker Hub
 -------------------
 
-A pre-built image is available on [Docker Hub](https://registry.hub.docker.com/u/fstab/mutt) and can be run as follows:
+A pre-built image is available on [Docker Hub](https://registry.hub.docker.com/u/fstab/mutt). Once the configuration is created _on the host system_, the container can be run as follows:
 
 ```bash
 docker run -v ~/.mutt:/home/mutt -t -i fstab/mutt
@@ -81,7 +81,7 @@ Build from Source
 -----------------
 
 1. Make sure [Docker](https://www.docker.com) is installed.
-3. Clone _docker-mutt_ from [GitHub](https://github.com/fstab/docker-mutt)
+3. Clone [fstab/docker-mutt](https://github.com/fstab/docker-mutt) from GitHub.
 
    ```bash
    git clone https://github.com/fstab/docker-mutt.git
@@ -93,7 +93,7 @@ Build from Source
    docker build -t="fstab/mutt" .
    ```
 
-5. Run a docker container with that image
+5. Once the configuration is is created _on the host system_, the docker container can be run as follows:
 
    ```bash
    docker run -v ~/.mutt:/home/mutt -t -i fstab/mutt
