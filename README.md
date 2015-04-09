@@ -81,20 +81,20 @@ Build from Source
 -----------------
 
 1. Make sure [Docker](https://www.docker.com) is installed.
-3. Clone [fstab/docker-mutt](https://github.com/fstab/docker-mutt) from GitHub.
-
+2. Clone [fstab/docker-mutt](https://github.com/fstab/docker-mutt) from GitHub.
+   
    ```bash
    git clone https://github.com/fstab/docker-mutt.git
    ```
-4. Build the docker image
-
+3. Build the docker image
+   
    ```bash
    cd docker-mutt
    docker build -t="fstab/mutt" .
    ```
-
-5. Once the configuration is is created _on the host system_, the docker container can be run as follows:
-
+   
+4. Once the configuration is is created _on the host system_, the docker container can be run as follows:
+   
    ```bash
    docker run -v ~/.mutt:/home/mutt -t -i fstab/mutt
    ```
