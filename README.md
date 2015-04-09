@@ -57,6 +57,11 @@ set trash="+Trash"
 set header_cache = "/home/mutt/.mutt_cache"
 set message_cachedir = "/home/mutt/.mutt_cache"
 
+# Automatically poll subscribed mailboxes for new mail (new in 1.5.11)
+set imap_check_subscribed
+# Reduce polling frequency to a sane level
+set mail_check=60
+
 #########################
 # usability
 #########################
